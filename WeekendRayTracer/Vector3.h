@@ -61,6 +61,9 @@ public:
 	inline float Dot( const Vector3& other ) const { return x * other.x + y * other.y + z * other.z; }
 	inline Vector3 Cross( const Vector3& other ) const { return Vector3( ( y * other.z - z * other.y ), ( z * other.x - x * other.z ), ( x * other.y - y * other.x ) ); }
 
+// Disable the "nameless struct/union" warning
+#pragma warning(push)
+#pragma warning(disable: 4201)
 	union
 	{
 		float e[3];
@@ -77,6 +80,7 @@ public:
 			float b;
 		};
 	};
+#pragma warning(pop)
 };
 
 inline Vector3 operator+( const Vector3& v1, const Vector3& v2 )
