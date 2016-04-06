@@ -7,7 +7,7 @@ class Ray;
 class Camera
 {
 public:
-	Camera(const Vector3& position, const Vector3& lookAt, const Vector3& inUp, const float vertFovDegrees, const float aspectRatio, const float aperture, const float focusDist );
+	Camera(const Vector3& position, const Vector3& lookAt, const Vector3& inUp, const float vertFovDegrees, const float aspectRatio, const float aperture, const float focusDist, const float t0, const float t1 );
 
 	const Ray GetRay( const float u, const float v ) const;
 
@@ -22,4 +22,7 @@ private:
 	Vector3 up;
 
 	float lensRadius;
+
+	float time0;
+	float time1;
 };

@@ -6,8 +6,10 @@
 #define _USE_MATH_DEFINES	// for M_PI
 #include <math.h>
 
-Camera::Camera(const Vector3& position, const Vector3& lookAt, const Vector3& inUp, const float vertFovDegrees, const float aspectRatio, const float aperture, const float focusDist)
+Camera::Camera(const Vector3& position, const Vector3& lookAt, const Vector3& inUp, const float vertFovDegrees, const float aspectRatio, const float aperture, const float focusDist, const float time0, const float time1)
 	: origin( position )
+	, time0( time0 )
+	, time1( time1 )
 {
 	lensRadius = aperture / 2.f;
 
@@ -28,5 +30,6 @@ const Ray Camera::GetRay( const float u, const float v ) const
 {
 	const Vector3 randomInDisk = lensRadius * RandInUnitDisk();
 	const Vector3 offset = right * randomInDisk.x + up * randomInDisk.y;
-	return Ray( origin + offset, lowerLeftCorner + u * horizStride + v * vertStride - origin - offset );
+	float time = time0 + Rand01() * ( time1 - time0 );
+	return Ray( origin + offset, lowerLeftCorner + u * horizStride + v * vertStride - origin - offset, time );
 }

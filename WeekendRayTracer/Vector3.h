@@ -64,13 +64,13 @@ public:
 	union
 	{
 		float e[3];
-		struct 
+		struct
 		{
 			float x;
 			float y;
 			float z;
 		};
-		struct 
+		struct
 		{
 			float r;
 			float g;

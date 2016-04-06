@@ -7,9 +7,10 @@ class Ray
 {
 public:
 	Ray() {}
-	Ray( const Vector3& a, const Vector3& b )
+	Ray( const Vector3& a, const Vector3& b, const float time = 0.f )
 		: a( a )
 		, b( b )
+		, time( time )
 	{}
 
 	Ray( const Ray& other )
@@ -38,9 +39,11 @@ public:
 
 	const Vector3& Origin() const { return a; }
 	const Vector3& Direction() const { return b; }
+	const float GetTime() const { return time; }
 	Vector3 Eval( const float t ) const { return a + b * t; }
 
 private:
 	Vector3 a;
 	Vector3 b;
+	float time;
 };
